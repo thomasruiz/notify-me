@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "lib": [
+      "es7"
+    ],
+    "typeRoots": [
+      "node_modules/@types/"
+    ]
+  }
+}
