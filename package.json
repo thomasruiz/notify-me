@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/thomasruiz/notify-me"
   },
-  "author": "",
+  "author": "Thomas Ruiz <contact@thomasruiz.eu>",
   "license": "MIT",
   "dependencies": {
     "@types/inquirer": "0.0.35",
