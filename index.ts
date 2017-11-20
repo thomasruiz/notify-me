@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {config} from './config';
 import {runNotification} from './notifications';
 import {askWhatToDo} from './ask-what-to-do';
