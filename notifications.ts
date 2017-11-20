@@ -18,6 +18,42 @@ export const runNotification = (notification) => {
     }, notification.delay * 1000);
 };
 
+export const listNotifications = () => {
+    config.notifications.forEach((notification) => {
+        console.info(notification.content.title + ' is running every ' + (notification.delay / 60) + ' minutes.');
+        console.info(notification.content.message + '\n');
+    });
+
+    askWhatToDo();
+};
+
+export const removeNotification = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'notification',
+            choices: config.notifications.map((notification) => notification.content.title),
+            message: 'What do you want to do?'
+        }
+    ]).then((answers) => {
+        const foundNotification = config.notifications.find((notification) => {
+            return notification.content.title === answers.notification;
+        });
+
+        stopNotification(foundNotification.id);
+
+        config.notifications = config.notifications.filter((notification) => {
+            return foundNotification.id !== notification.id
+        });
+
+        syncNotifications();
+
+        console.log(`Notification ${foundNotification.content.title} has been removed.`);
+
+        askWhatToDo();
+    });
+};
+
 export const addNotification = () => {
     const questions = [
         {

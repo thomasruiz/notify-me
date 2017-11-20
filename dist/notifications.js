@@ -16,6 +16,34 @@ exports.runNotification = function (notification) {
         notifier.notify(notification.content);
     }, notification.delay * 1000);
 };
+exports.listNotifications = function () {
+    config_1.config.notifications.forEach(function (notification) {
+        console.info(notification.content.title + ' is running every ' + (notification.delay / 60) + ' minutes.');
+        console.info(notification.content.message + '\n\n');
+    });
+    ask_what_to_do_1.askWhatToDo();
+};
+exports.removeNotification = function () {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'notification',
+            choices: config_1.config.notifications.map(function (notification) { return notification.content.title; }),
+            message: 'What do you want to do?'
+        }
+    ]).then(function (answers) {
+        var foundNotification = config_1.config.notifications.find(function (notification) {
+            return notification.content.title === answers.notification;
+        });
+        exports.stopNotification(foundNotification.id);
+        config_1.config.notifications = config_1.config.notifications.filter(function (notification) {
+            return foundNotification.id !== notification.id;
+        });
+        exports.syncNotifications();
+        console.log("Notification " + foundNotification.content.title + " has been removed.");
+        ask_what_to_do_1.askWhatToDo();
+    });
+};
 exports.addNotification = function () {
     var questions = [
         {

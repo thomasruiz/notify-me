@@ -7,7 +7,7 @@ exports.askWhatToDo = function () {
         {
             type: 'list',
             name: 'action',
-            choices: ['Add a notification', 'Reset notifications', 'Do nothing'],
+            choices: ['List notifications', 'Add a notification', 'Remove a notification', 'Reset notifications', 'Do nothing'],
             message: 'What do you want to do?'
         }
     ]).then(function (answers) {
@@ -17,6 +17,12 @@ exports.askWhatToDo = function () {
                 break;
             case 'Reset notifications':
                 notifications_1.resetNotifications();
+                break;
+            case 'List notifications':
+                notifications_1.listNotifications();
+                break;
+            case 'Remove a notification':
+                notifications_1.removeNotification();
                 break;
             case 'Do nothing':
                 console.info('Hit ^C to exit the app. Have a nice day!');
