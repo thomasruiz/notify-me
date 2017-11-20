@@ -45,7 +45,7 @@ exports.addNotification = function () {
         },
     ];
     inquirer.prompt(questions).then(function (answers) {
-        var notif = {
+        var notification = {
             id: uuidv4(),
             delay: parseInt(answers.delay, 10) * 60,
             content: {
@@ -54,8 +54,8 @@ exports.addNotification = function () {
                 sound: answers.sound,
             },
         };
-        config_1.config.notifications.push(notif);
-        exports.runNotification(notif);
+        config_1.config.notifications.push(notification);
+        exports.runNotification(notification);
         exports.syncNotifications();
         ask_what_to_do_1.askWhatToDo();
     });
