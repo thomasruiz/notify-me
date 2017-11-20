@@ -1,6 +1,6 @@
 {
   "name": "@decahedron/notify-me",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.1",
   "description": "A simple tool to remind you things regularly.",
   "main": "index.js",
   "scripts": {
