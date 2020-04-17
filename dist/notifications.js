@@ -13,13 +13,18 @@ exports.syncNotifications = function () {
 exports.runNotification = function (notification) {
     console.info('Notification is running: ' + notification.content.title);
     runningNotifications[notification.id] = setInterval(function () {
-        notifier.notify(notification.content);
+        console.info('Running notification: ' + notification.title);
+        notifier.notify(notification.content, function (err, resp) {
+            if (err) {
+                console.error(err);
+            }
+        });
     }, notification.delay * 1000);
 };
 exports.listNotifications = function () {
     config_1.config.notifications.forEach(function (notification) {
         console.info(notification.content.title + ' is running every ' + (notification.delay / 60) + ' minutes.');
-        console.info(notification.content.message + '\n\n');
+        console.info(notification.content.message + '\n');
     });
     ask_what_to_do_1.askWhatToDo();
 };
