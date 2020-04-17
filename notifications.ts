@@ -14,7 +14,12 @@ export const syncNotifications = () => {
 export const runNotification = (notification) => {
     console.info('Notification is running: ' + notification.content.title);
     runningNotifications[notification.id] = setInterval(() => {
-        notifier.notify(notification.content);
+        console.info('Running notification: ' + notification.title);
+        notifier.notify(notification.content, function (err, resp) {
+            if (err) {
+                console.error(err);
+            }
+        });
     }, notification.delay * 1000);
 };
 
