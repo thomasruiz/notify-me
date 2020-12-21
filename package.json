@@ -20,7 +20,7 @@
     "@types/node": "^8.10.60",
     "@types/node-notifier": "0.0.28",
     "inquirer": "^4.0.2",
-    "node-notifier": "^5.4.3",
+    "node-notifier": "^8.0.1",
     "ts-node": "^7.0.1",
     "typescript": "^2.9.2",
     "uuid": "^3.4.0"
